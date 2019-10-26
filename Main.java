@@ -1,24 +1,33 @@
-public class Main {
+import java.math.BigInteger;
+import java.util.Arrays;
 
-	public static boolean validation(String name, int umur, String username) {
-		String regex1 = "[a-z]*";
-		String regex2 = "[.|_]";
-		String regex3 = "[0-9]*";
-		if(name.length() < 3 || name != name.toUpperCase()) {
-			return false;
+public class Main {
+	public static long divideAndSort(long input) {
+		String convert = String.valueOf(input);
+		String temp = "";
+		String hasil = "";
+		for(int i=0;i<convert.length();i++) {
+			if(convert.charAt(i) == '0') {
+				char a[] = temp.toCharArray();
+				Arrays.sort(a);
+				hasil += String.valueOf(a);
+				temp = "";
+			}else{
+				temp+= convert.charAt(i);
+			}
+			if(i == convert.length() - 1) {
+				char a[] = temp.toCharArray();
+				Arrays.sort(a);
+				hasil += String.valueOf(a);
+			}
 		}
-		if(umur < 10 || umur > 99) return false;
-		
-		if(username.substring(0,4).matches(regex1) && username.substring(4, 5).matches(regex2)
-				&& username.substring(5, 8).matches(regex3)) {
-			return true;
-		}else {
-			return false;
-		}
+
+		return Long.valueOf(hasil);
 	}
+	
 	
 	public static void main(String[] args) {
-		System.out.println(validation("JANG", 99 , "toledada_333"));
+		long val = 5956560159466056L;
+		System.out.println(divideAndSort(val));
 	}
-	
 }
